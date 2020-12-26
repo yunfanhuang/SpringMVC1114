@@ -29,4 +29,7 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
         
+    <!-- 匯入資源配置 -->
+    <import resource="classpath:jpa-lab-config.xml"></import>
+    
 </beans>

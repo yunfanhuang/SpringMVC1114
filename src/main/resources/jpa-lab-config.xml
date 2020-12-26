@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+    <!-- 引用外部配置: derby 屬性值 -->
+    <!-- Web版須加入 classpath -->
+    <context:property-placeholder location="classpath:derby_lab_jpa.properties"></context:property-placeholder>
+    
+    <!-- 建立資料源(資料庫) -->
+    <!-- 在相同帳密下的資料庫可直接改 url 路徑 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="initialPoolSize" value="10"></property><!-- 最大連線數 -->
+    </bean>
+    
+    <!-- JPA Hibernate 配置 -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <!-- 配置資料庫的資料源 -->
+        <property name="dataSource" ref="dataSource"></property>
+        <!-- 配置 Entity 物件的存放位置 -->
+        <property name="packagesToScan">
+            <list>
+                <value>com.spring.mvc.entity</value>
+            </list>
+        </property>
+        <!-- 設定 Hibernate 的相關屬性 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!-- 因為會透過 SpringMVC 來管理,所以不用加入,加入會錯 -->
+                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
+            </props>            
+        </property>
+    </bean>
+    
+    <!-- 交易模式 Tx 的配置 -->
+    <!-- 配置 Hibernate 事務管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <!-- 開啟交易的註解@驅動, 針對事務的相關註解@進行 -->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+    
+</beans>
