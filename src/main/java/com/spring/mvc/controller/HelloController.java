@@ -35,7 +35,7 @@ public class HelloController {
     @ResponseBody
     public String add2(@PathVariable("x") double x,@PathVariable double y){
         //return x+y +" ";                
-        return String.format("%f + %f = %f", x, y, (x+y));                
+        return String.format("%f + %f = %f", x, y, (x+y));
     }
                              
 }
