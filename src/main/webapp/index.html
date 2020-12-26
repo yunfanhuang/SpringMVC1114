@@ -3,28 +3,100 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
     </head>
-    <body>
+    <body style="padding: 20px">
         <h1>SpringMVC Menu</h1>
-        <h2>HelloController</h2>
-        <ol>
-            <!-- 蒐集網址連結 -->
-            <li>
-                <a href="mvc/hello/now">mvc/hello/now</a>
-            </li>
-            <li>
-                <a href="mvc/hello/greet">mvc/hello/greet</a>
-            </li>
-            <li>
-                <!-- 路徑參數配置 -->
-                <a href="mvc/hello/add/10/20">mvc/hello/add/10/20</a><br>
-                <a href="mvc/hello/add/30/40">mvc/hello/add/30/40</a><br>
-            </li>
-            <li>
-                <!-- 路徑參數配置 -->
-                <a href="mvc/hello/add2/10.2/20.5">mvc/hello/add2/10.2/20.5</a><br>
-                <a href="mvc/hello/add2/30/40">mvc/hello/add2/30/40</a><br>
-            </li>
-        </ol>
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <th><h2>HelloController</h2></th>
+                    <th><h2>PageController</h2></th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ol>
+                            <!-- 蒐集網址連結 -->
+                            <!-- p : 空一行 -->
+                            <li>
+                                <a href="mvc/hello/now">mvc/hello/now</a>
+                            </li><p />
+                            <li>
+                                <a href="mvc/hello/greet">mvc/hello/greet</a>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/*/ant")<br>
+                                <a href="mvc/hello/foo/ant">mvc/hello/foo/ant</a><br>
+                                <a href="mvc/hello/bar/ant">mvc/hello/bar/ant</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/ant?")<br>
+                                <a href="mvc/hello/ant7">mvc/hello/ant7</a><br>
+                                <a href="mvc/hello/ant8">mvc/hello/ant8</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/**/ant")<br>
+                                <a href="mvc/hello/a/b/c/ant">mvc/hello/a/b/c/ant</a><br>
+                                <a href="mvc/hello/abc/def/ant">mvc/hello/abc/def/ant</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping(value = {"/tw","/taiwan"})<br>
+                                <a href="mvc/hello/tw">mvc/hello/tw</a><br>
+                                <a href="mvc/hello/taiwan">mvc/hello/taiwan</a><br>
+                            </li><p />
+                            <li>
+                                <!-- 路徑參數配置 -->
+                                <a href="mvc/hello/add/10/20">mvc/hello/add/10/20</a><br>
+                                <a href="mvc/hello/add/30/40">mvc/hello/add/30/40</a><br>
+                            </li><p />
+                            <li>
+                                <!-- 路徑參數配置 -->
+                                <a href="mvc/hello/add2/10.2/20.5">mvc/hello/add2/10.2/20.5</a><br>
+                                <a href="mvc/hello/add2/30/40">mvc/hello/add2/30/40</a><br>
+                                <!--<a href="mvc/hello/add2/50/60.6">mvc/hello/add2/50/60</a><br>-->
+                                <a href="mvc/hello/add2/50/60.6">mvc/hello/add2/50/60.6</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/area/{r}")<br>
+                                <a href="mvc/hello/area/">mvc/hello/area/</a>(不支援)<br>
+                                <a href="mvc/hello/area/10">mvc/hello/area/10</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/area2/{r}")<br>
+                                <a href="mvc/hello/area2/">mvc/hello/area2/</a>(不支援)<br>
+                                <a href="mvc/hello/area2/10">mvc/hello/area2/10</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/bmi")<br>
+                                <a href="mvc/hello/bmi?h=170&w=60">mvc/hello/bmi?h=170&w=60</a><br>
+                                <a href="mvc/hello/bmi?h=170">mvc/hello/bmi?h=170</a><br>
+                                <a href="mvc/hello/bmi?w=60">mvc/hello/bmi?w=60</a><br>
+                                <a href="mvc/hello/bmi">mvc/hello/bmi</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/bmi2")<br>
+                                <a href="mvc/hello/bmi2?h=170&w=60">mvc/hello/bmi2?h=170&w=60</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/getId")<br>
+                                <a href="mvc/hello/getId?id=1,3,5,7,9">mvc/hello/getId?id=1,3,5,7,9</a><br>
+                            </li><p />
+                            <li>
+                                @RequestMapping("/ticket/{sex}")<br>
+                                <a href="mvc/hello/ticket/man?price=100">mvc/hello/ticket/man?price=100</a><br>
+                                <a href="mvc/hello/ticket/female?price=100">mvc/hello/ticket/female?price=100</a><br>
+                            </li><p />
+                        </ol>
+                    </td>
+                    <td>
+                        <ol>
+
+                        </ol>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
